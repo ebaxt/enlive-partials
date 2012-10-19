@@ -1,6 +1,6 @@
 # Enlive-partials
 
-Adds support for including and embedding partial templates in the enlive templating library. Based on the awesome work by [Brenton Ashworth](https://github.com/brentonashworth), [Craig Andera](https://github.com/candera) and others at [Relavance, Inc.](http://thinkrelevance.com/) on the Clojurescript one project.
+Adds support for including and embedding partial templates in the enlive templating library. Based on the awesome work by [Brenton Ashworth](https://github.com/brentonashworth), [Craig Andera](https://github.com/candera) and others at [Relavance, Inc.](http://thinkrelevance.com/) on the [Clojurescript one project](http://clojurescriptone.com/).
 
 ## Why?
 
