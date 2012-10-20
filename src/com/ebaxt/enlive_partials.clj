@@ -117,9 +117,7 @@
                  :headers {"Content-Type" "text/html; charset=utf-8"}
                  :body new-body})
               resp)))
-        {:status 200
-         :headers {"Content-Type" "text/html; charset=utf-8"}
-         :body "nope"}))))
+        (handler req)))))
 
 ;; (defn apply-templates
 ;;   "Ring middleware which intercepts files served from the public
