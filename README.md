@@ -8,6 +8,30 @@ One of the biggest benefits of using Enlive is the ability to have designers wor
 
 A better approach is to create a layout.html file with all the necessary resources, and interpolate the html specific to each template into the body of layout.html.
 
+## Install
+
+###Leiningen
+
+    [com.ebaxt.enlive-partials "0.1.0"]
+
+###Maven
+
+```xml
+<dependency>
+  <groupId>com.ebaxt.enlive-partials</groupId>
+  <artifactId>com.ebaxt.enlive-partials</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
+Remember to add clojars as a repository
+
+```xml
+ <repository>
+   <id>clojars</id>
+   <url>http://clojars.org/repo/</url>
+ </repository>
+```
 
 
 ## Usage
