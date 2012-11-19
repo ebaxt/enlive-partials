@@ -1,10 +1,10 @@
 # Enlive-partials
 
-Adds support for including and embedding partial templates in the enlive templating library. Based on the awesome work by [Brenton Ashworth](https://github.com/brentonashworth), [Craig Andera](https://github.com/candera) and others at [Relavance, Inc.](http://thinkrelevance.com/) on the [Clojurescript one project](http://clojurescriptone.com/).
+Adds support for including and embedding partial templates in the enlive templating library. Based on the awesome work by [Brenton Ashworth](https://github.com/brentonashworth), [Craig Andera](https://github.com/candera) and others at [Relevance, Inc.](http://thinkrelevance.com/) on the [Clojurescript one project](http://clojurescriptone.com/).
 
 ## Why?
 
-One of the biggest benefits of using Enlive is the ability to have designers work with plain HTML/CSS, without having to worry about the underlying template engine. This is great, but can lead to a lot of duplication in you templates (just imagine having to include all the Twitter Bootstrap dependencies in all your templates files.
+One of the biggest benefits of using Enlive is the ability to have designers work with plain HTML/CSS, without having to worry about the underlying template engine. This is great, but can lead to a lot of duplication in your templates (just imagine having to include all the Twitter Bootstrap dependencies in all your template files).
 
 A better approach is to create a layout.html file with all the necessary resources, and interpolate the html specific to each template into the body of layout.html.
 
@@ -24,7 +24,7 @@ A better approach is to create a layout.html file with all the necessary resourc
 </dependency>
 ```
 
-Remember to add clojars as a repository
+Remember to add clojars as a repository:
 
 ```xml
  <repository>
