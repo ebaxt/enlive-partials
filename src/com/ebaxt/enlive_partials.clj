@@ -75,8 +75,12 @@
   Returns a seq of Enlive nodes.
 
   [dt]: https://github.com/brentonashworth/one/wiki/Design-and-templating"
-  [nodes]
-  (wrap-html (include-html nodes)))
+  ([nodes] (wrap-html (include-html nodes)))
+  ([nodes vars]
+     (do
+       (if (nil? vars)
+         (construct-html nodes)
+         (replace-vars (construct-html nodes) vars)))))
 
 (defn load-html
   "Accept a file (a path to a resource on the classpath) and return a
@@ -112,23 +116,10 @@
                 {:keys [headers body] :as response} resp]
             (if (and (= (type body) File)
                      (.endsWith (.getName body) ".html"))
-              (let [new-body (render (construct-html (html-snippet (slurp body))))]
+              (let [new-body (render (construct-html (html-snippet (slurp body)) (:vars opts)))]
                 {:status 200
                  :headers {"Content-Type" "text/html; charset=utf-8"}
                  :body new-body})
               resp)))
         (handler req)))))
 
-;; (defn apply-templates
-;;   "Ring middleware which intercepts files served from the public
-;;   directory and applies templating."
-;;   [handler]
-;;   (fn [request]
-;;     (let [{:keys [headers body] :as response} (handler request)]
-;;       (if (and (= (type body) File)
-;;                (.endsWith (.getName body) ".html"))
-;;         (let [new-body (render (construct-html (html-snippet (slurp body))))]
-;;           {:status 200
-;;            :headers {"Content-Type" "text/html; charset=utf-8"}
-;;            :body new-body})
-;;         response))))
