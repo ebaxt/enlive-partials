@@ -1,10 +1,10 @@
 (ns com.ebaxt.enlive-partials
   (:require [ring.util.codec :as codec]
             [ring.util.response :as response]
-            [clojure.java.io :as io])
-  (:use net.cgrand.enlive-html)
+            [clojure.java.io :as io]
+            [clojure.xml :as xml])
+  (:use [net.cgrand.enlive-html])
   (:import java.io.File)
-  (:use clojure.pprint)
   (:import java.lang.Thread)
   (:import java.lang.RuntimeException))
 
@@ -60,6 +60,11 @@
             outer)))
       h)))
 
+(defn replace-var-string [vars node]
+  (if (string? node)
+    ((replace-vars vars) node)
+    node))
+
 (defn construct-html
   "Process a seq of Enlive nodes looking for `_include` and `_within` tags.
   Occurrences of `_include` are replaced by the resource to which they
@@ -77,10 +82,9 @@
   [dt]: https://github.com/brentonashworth/one/wiki/Design-and-templating"
   ([nodes] (wrap-html (include-html nodes)))
   ([nodes vars]
-     (do
-       (if (nil? vars)
-         (construct-html nodes)
-         (replace-vars (construct-html nodes) vars)))))
+     (if (nil? vars)
+       (construct-html nodes)
+       (clojure.walk/postwalk (partial replace-var-string vars) (construct-html nodes)))))
 
 (defn load-html
   "Accept a file (a path to a resource on the classpath) and return a
@@ -122,4 +126,5 @@
                  :body new-body})
               resp)))
         (handler req)))))
+
 
