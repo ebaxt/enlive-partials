@@ -1,4 +1,5 @@
 (defproject com.ebaxt.enlive-partials "0.1.1"
+  :min-lein-version "2.0.0"
   :description "Support for including partial templates with enlive."
   :url "https://github.com/ebaxt/enlive-partials"
   :license {:name "Eclipse Public License"

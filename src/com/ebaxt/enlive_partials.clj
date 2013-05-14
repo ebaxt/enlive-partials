@@ -3,10 +3,11 @@
             [ring.util.response :as response]
             [clojure.java.io :as io]
             [clojure.xml :as xml])
-  (:use [net.cgrand.enlive-html])
-  (:import java.io.File)
-  (:import java.lang.Thread)
-  (:import java.lang.RuntimeException))
+  (:use [net.cgrand.enlive-html]
+        [clojure.walk :only [postwalk]])
+  (:import java.io.File
+           java.lang.Thread
+           java.lang.RuntimeException))
 
 (def ^:dynamic *template-path*)
 
@@ -26,7 +27,11 @@
       (throw (Exception. (format "Template doesn't exist: %s" path))))))
 
 (defn- html-body [name]
-  (:content (first (select (find-html-resource name) [:body]))))
+  (-> name
+      find-html-resource
+      (select [:body])
+      first
+      :content))
 
 (defn- include-html [h]
   (let [includes (select h [:_include])]
@@ -84,7 +89,7 @@
   ([nodes vars]
      (if (nil? vars)
        (construct-html nodes)
-       (clojure.walk/postwalk (partial replace-var-string vars) (construct-html nodes)))))
+       (postwalk (partial replace-var-string vars) (construct-html nodes)))))
 
 (defn load-html
   "Accept a file (a path to a resource on the classpath) and return a
@@ -120,7 +125,11 @@
                 {:keys [headers body] :as response} resp]
             (if (and (= (type body) File)
                      (.endsWith (.getName body) ".html"))
-              (let [new-body (render (construct-html (html-snippet (slurp body)) (:vars opts)))]
+              (let [new-body (-> body
+                                 slurp
+                                 html-snippet
+                                 (construct-html (:vars opts))
+                                 render)]
                 {:status 200
                  :headers {"Content-Type" "text/html; charset=utf-8"}
                  :body new-body})
