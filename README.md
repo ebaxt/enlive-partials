@@ -14,15 +14,15 @@ A better approach is to create a layout.html file with all the necessary resourc
 
 ###Leiningen
 
-    [com.ebaxt.enlive-partials "0.1.1"]
+    [enlive-partials "0.2.0"]
 
 ###Maven
 
 ```xml
 <dependency>
-  <groupId>com.ebaxt.enlive-partials</groupId>
-  <artifactId>com.ebaxt.enlive-partials</artifactId>
-  <version>0.1.1</version>
+  <groupId>enlive-partials</groupId>
+  <artifactId>enlive-partials</artifactId>
+  <version>0.2.0</version>
 </dependency>
 ```
 
@@ -69,7 +69,7 @@ Furthermore, suppose we have the following two files named `templates/menu.html`
 ```
 
 
-In order to handle the partial templates you have to enable the `com.ebaxt.enlive-partials/handle-partials` ring middleware.
+In order to handle the partial templates you have to enable the `enlive-partials/handle-partials` ring middleware.
 
 Assumig you have the following directory structure:
 
@@ -82,7 +82,7 @@ Assumig you have the following directory structure:
 You enable the middleware by passing in the path to the template directory, together with an optional `:templateContext`. If no template-context is provided, the template path will be used.
 
 ```clojure
-(use 'ring.middleware.file 'ring.adapter.jetty 'com.ebaxt.enlive-partials)
+(use 'ring.middleware.file 'ring.adapter.jetty 'enlive-partials)
 
 (defn hello [req]
   {:status 200
@@ -112,6 +112,6 @@ If we point the browser to `http://localhost:8080/tpl/example.html`, the followi
 
 ## License
 
-Copyright © 2012 Erik Bakstad
+Copyright © 2013 Erik Bakstad
 
 Distributed under the Eclipse Public License, the same as Clojure.
