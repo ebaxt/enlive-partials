@@ -2,6 +2,8 @@
 
 Adds support for including and embedding partial templates in the enlive templating library. Based on the awesome work by [Brenton Ashworth](https://github.com/brentonashworth), [Craig Andera](https://github.com/candera) and others at [Relevance, Inc.](http://thinkrelevance.com/) on the [Clojurescript one project](http://clojurescriptone.com/).
 
+![Build Status](https://travis-ci.org/ebaxt/enlive-partials.png)
+
 ## Why?
 
 One of the biggest benefits of using Enlive is the ability to have designers work with plain HTML/CSS, without having to worry about the underlying template engine. This is great, but can lead to a lot of duplication in your templates (just imagine having to include all the Twitter Bootstrap dependencies in all your template files).
