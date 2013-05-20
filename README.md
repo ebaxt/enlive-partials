@@ -69,7 +69,7 @@ Furthermore, suppose we have the following two files named `templates/menu.html`
 ```
 
 
-In order to handle the partial templates you have to enable the `enlive-partials/handle-partials` ring middleware.
+In order to handle the partial templates you have to enable the `com.ebaxt.enlive-partials/handle-partials` ring middleware.
 
 Assumig you have the following directory structure:
 
@@ -82,7 +82,7 @@ Assumig you have the following directory structure:
 You enable the middleware by passing in the path to the template directory, together with an optional `:templateContext`. If no template-context is provided, the template path will be used.
 
 ```clojure
-(use 'ring.middleware.file 'ring.adapter.jetty 'enlive-partials)
+(use 'ring.middleware.file 'ring.adapter.jetty 'com.ebaxt.enlive-partials)
 
 (defn hello [req]
   {:status 200
