@@ -108,6 +108,27 @@ If we point the browser to `http://localhost:8080/tpl/example.html`, the followi
 </html>
 ```
 
+### Var support
+
+Since version 0.2.0 enlive-partials supports using enlive `${vars}`. A typical use-case for this is
+rewriting the context-path for resources, in order to load them from a cdn.
+
+
+```html
+<html>
+  <head>
+      <script src="${cdn}/js/app.js"></script>
+  </head>
+  <body>...</body>
+</html>
+```
+
+In order to replace the `${cdn}` pass a `:vars` map containing the new values to the handler:
+
+```clojure
+(handle-partials hello "templates" {:template-context "tpl" :vars {:cdn "http://cdn.com"}})
+
+```
 
 
 ## License
