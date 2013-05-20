@@ -67,7 +67,10 @@
 
 (defn replace-var-string [vars node]
   (if (string? node)
-    ((replace-vars vars) node)
+    (try
+      ((replace-vars vars) node)
+      (catch NullPointerException npe
+        (throw (Exception. (str "Could not replace: <" node ">. Probably due to a missing replacement value.")) )))
     node))
 
 (defn construct-html
