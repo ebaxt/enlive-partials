@@ -14,7 +14,7 @@
 (defn render
   "Given a seq of Enlive nodes, return the corresponding HTML string."
   [t]
-  (apply str (emit* t)))
+  (clojure.string/join (emit* t)))
 
 (declare construct-html)
 
@@ -103,8 +103,7 @@
 (defn- ensure-dir
   "Ensures that a directory exists at the given path, throwing if one does not."
   [^String path]
-  (let [file (-> (io/resource path)
-                 (io/as-file))]
+  (let [file (io/as-file (io/resource path))]
     (if-not (and file (.isDirectory file) (.exists file))
       (throw (Exception. (format "Directory does not exist: %s" path))))))
 

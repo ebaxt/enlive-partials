@@ -8,7 +8,8 @@
                  [enlive "1.1.1"]
                  [ring/ring-core "1.1.8"]]
   :profiles {
-             :dev {:plugins [[lein-ring "0.8.5"]]
+             :dev {:plugins [[lein-ring "0.8.5"]
+                             [lein-kibit "0.0.8"]]
                    :dependencies [[ring-mock "0.1.3"]
                                   [ring/ring-jetty-adapter "1.1.8"]]
                    :ring {:handler com.ebaxt.handler-test/template-handler
